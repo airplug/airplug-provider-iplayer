@@ -1,11 +1,4 @@
-iplayer-dl in C#
-================
+iplayer-dl in C++
+=================
 
-It's very basic, but it works.
-
-Building
---------
-
-You'll need rake and the Mono toolchain. It should be possible to build it
-using Microsoft's tools, too, but you'd need to set up the build process from
-scratch.
+This is a one-to-one literal port of [iplayer-dl.net](https://github.com/threedaymonk/iplayer-dl.net) from C# to C++.

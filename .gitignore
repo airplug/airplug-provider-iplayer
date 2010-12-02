@@ -7,3 +7,4 @@
 /lib
 /release
 /%temp%
+*.o
