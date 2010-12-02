@@ -1,4 +1,5 @@
-#include "Cli.h"
+#include "Downloader.h"
+#include "Cli.h" // Header file for this implementation file
 
 namespace IPDL {
 
@@ -45,7 +46,7 @@ namespace IPDL {
 
   void Cli::ShowVersion() {
     var details = Assembly.GetName();
-    Console.WriteLine("{0} version {1}", details.Name, details.Version);
+    cout << details.Name << " version " << details.Version << endl;
   }
 
   void Cli::ShowHelp() {
@@ -54,58 +55,63 @@ namespace IPDL {
 
   void Cli::Download(string identifier) {
     var pid = Util.ExtractPid(identifier);
+    // Get the pid from the identifier
+
     if (pid == null) {
-      if (!this.quiet) {
-	Console.WriteLine("ERROR: {0} is not recognised as a programme ID", identifier);
-      }
+      if (!this.quiet)
+	cout << "ERROR: " << identifier << " is not recognised as a programme ID" << endl;
+      
       this.succeeded = false;
       return;
     }
+
     downloader.Download(pid, DownloadStart, DownloadProgress, DownloadEnd);
   }
 
   void Cli::DownloadStart(string filename) {
     if (this.quiet) return;
 
-    Console.WriteLine("Downloading: {0}", filename);
+    cout << "Downloading: " << filename << endl;
   }
 
   void Cli::DownloadProgress(int bytesDownloaded, int total) {
     if (this.quiet) return;
 
-    string output = String.Format("{1:0.0}% of {0}",
-				  Util.SIFormat(total, "B"),
-				  (bytesDownloaded * 100.0) / total);
-    if (output != lastOutput) {
-#if !TEST_BUILD
-      Console.CursorLeft = 0;
-#endif
-      Console.Write(output);
+    char *output = sprintf("%f%% of %f",
+			    total,
+			    (bytesDownloaded * 100.0) / total
+			    );
+				  
+    if (strcmp(output, lastOutput)) {
+      cout << output << endl;
       lastOutput = output;
     }
   }
 
   void Cli::DownloadEnd(DownloadStatus status, string message) {
-    string output = "";
+    if (this.quiet)
+      return;
+
     switch (status) {
     case DownloadStatus.Complete:
-      output = String.Format("SUCCESS: Downloaded to {0}", message);
+      cout << "SUCCESS: Downloaded to " << message;
       break;
+
     case DownloadStatus.Incomplete:
-      output = String.Format("FAILED: Incomplete download saved as {0}", message);
+      cout << "FAILED: Incomplete download saved as " << message;
       this.succeeded = false;
       break;
+
     case DownloadStatus.AlreadyExists:
-      output = String.Format("SKIP: File exists: {0}", message);
+      cout << "SKIP: File exists: " << message;
       break;
+
     case DownloadStatus.Unavailable:
-      output = String.Format("ERROR: {0} is currently unavailable", message);
+      cout << "ERROR: " << message << " is currently unavailable";
       this.succeeded = false;
       break;
     }
-    if (!this.quiet) {
-      Console.WriteLine();
-      Console.WriteLine(output);
-    }
+
+    cout << endl;
   }
 }

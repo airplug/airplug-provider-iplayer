@@ -13,8 +13,9 @@ namespace IPDL {
   private: // Data members
 
     Downloader &downloader;
-    bool succeeded, quiet;
-    string lastOutput = "";
+    bool succeeded,
+         quiet;
+    char *lastOutput = "";
 
 
   public: // Public methods
@@ -40,13 +41,19 @@ namespace IPDL {
     void ShowHelp();
 
     void Download(string identifier);
-    // Given a programme identifier, download it
+    /* Given a programme identifier, download it.
+       This will pass the following three methods to this->downloader
+       for it to give us updates on the download's status.
+     */
 
     void DownloadStart(string filename);
+    // Be notified that a download with name `filename` has started
 
     void DownloadProgress(int bytesDownloaded, int total);
+    // Be notified that we've downloaded `bytesDownloaded` bytes of the total `total`
 
     void DownloadEnd(DownloadStatus status, string message);
+    // Be notified that the download name `message` ended with status `status`
 
   }; // class Cli
 
