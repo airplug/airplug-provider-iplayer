@@ -24,6 +24,10 @@ namespace IPDL {
     Cli();
 
     void Run(string[] args);
+    /* Given the arguments to the main program,
+       extract any/all programme identifiers,
+       and Download() each of them.
+     */
 
     bool get_succeeded();
     // Just get the value of private member `succeeded`
@@ -35,9 +39,8 @@ namespace IPDL {
 
     void ShowHelp();
 
-    Assembly get_Assembly();
-
     void Download(string identifier);
+    // Given a programme identifier, download it
 
     void DownloadStart(string filename);
 

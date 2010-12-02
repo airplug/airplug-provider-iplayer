@@ -13,21 +13,26 @@ namespace IPDL {
   void Cli::Run(string[] args) {
     bool showHelp    = false;
     bool showVersion = false;
+
     var opts = new OptionSet(){
       {"d=|download-path=", v => Directory.SetCurrentDirectory(v)},
       {"v|version",         v => showVersion = true},
       {"q|quiet",           v => quiet = true},
       {"h|help",            v => showHelp = true}
     };
+
     var identifiers = opts.Parse(args);
+
     if (showVersion) {
       ShowVersion();
       return;
     }
+
     if (showHelp || identifiers.Count == 0) {
       ShowHelp();
       return;
     }
+
     foreach (var identifier in identifiers) {
       Download(identifier);
     }
@@ -45,10 +50,6 @@ namespace IPDL {
 
   void Cli::ShowHelp() {
     Console.WriteLine((new StreamReader(Assembly.GetManifestResourceStream("help.txt"))).ReadToEnd());
-  }
-
-  Assembly Cli::get_Assembly() {
-    return Assembly.GetExecutingAssembly();
   }
 
   void Cli::Download(string identifier) {
