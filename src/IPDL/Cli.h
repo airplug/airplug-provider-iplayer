@@ -7,15 +7,18 @@ using Mono.Options;
 using System.Reflection;
 
 
+#include "Downloader.h"
+
 namespace IPDL {
   class Cli {
 
   private: // Data members
 
     Downloader &downloader;
-    bool succeeded,
-         quiet;
-    char *lastOutput = "";
+
+    bool succeeded, quiet;
+
+    string lastOutput = "";
 
 
   public: // Public methods

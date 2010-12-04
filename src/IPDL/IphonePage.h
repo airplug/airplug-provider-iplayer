@@ -1,15 +1,18 @@
 #ifndef IPHONEPAGE_H
 #define IPHONEPAGE_H
 
-using System.Text.RegularExpressions;
-using System.IO;
+#include "IphonePage.h"
+
+#include <string>
+
+using namespace std;
 
 namespace IPDL {
   class IphonePage {
 
 	private: // Data members
 
-    static string urlPrefix = "http://www.bbc.co.uk/mobile/iplayer/episode/";
+    static string urlPrefix;
 
     string document;
 		// The XML parse tree
@@ -19,8 +22,7 @@ namespace IPDL {
 
     static string Url(string pid);
 
-    IphonePage(string source);
-    IphonePage(Stream source);
+    IphonePage(string source); // Initialize parse tree from string
 
     string get_EmbeddedMediaUrl();
 
@@ -30,9 +32,7 @@ namespace IPDL {
 
 	private: // Private methods
 
-    void Init(string source) {
-      this.document = source;
-    }
+    void Init(string source);
 
   };
 }

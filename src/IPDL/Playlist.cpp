@@ -6,6 +6,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
+#include "pugixml.hpp"
+
+using namespace std;
+using namespace pugi;
+
 namespace IPDL {
 
 	static string Playlist::Url(string pid) {
@@ -13,27 +18,40 @@ namespace IPDL {
 	}
 
 	Playlist::Playlist(string source) {
-		Init(source);
+		this->document.load(source);
 	}
 
-	Playlist::Playlist(Stream source) {
-		Init((new StreamReader(source)).ReadToEnd());
-	}
 
-	void Playlist::Init(string source) {
-		this.document = XElement.Parse(source);
-	}
+	class PlaylistWalker: pugi::xml_tree_walker {
+	public:
+		vector<PlaylistItem> &list;
 
-	IEnumerable<PlaylistItem> Playlist::get_Items() {
-		return from item in document.Descendants(Playlist.playlistNS + "item")
-			let kind = (string)item.Attribute("kind")
-			where kind == "radioProgramme" || kind == "programme"
-			select new PlaylistItem {
-			Kind       = (kind == "radioProgramme") ? "radio" : "tv",
-			Identifier = (string)item.Attribute("identifier"),
-			Group      = (string)item.Attribute("group"),
-			Alternate  = (string)item.Element(Playlist.playlistNS + "alternate").Attribute("id")
+		PlaylistWalker(vector<PlaylistItem> &_list) {
+			this->list = _list;
 		};
+
+		virtual bool for_each(pugi::xml_node& node) {
+			// put in list
+			let kind = (string)item.Attribute("kind")
+				where kind == "radioProgramme" || kind == "programme"
+				select new PlaylistItem {
+				Kind       = (kind == "radioProgramme") ? "radio" : "tv",
+				Identifier = (string)item.Attribute("identifier"),
+				Group      = (string)item.Attribute("group"),
+				Alternate  = (string)item.Element(Playlist.playlistNS + "alternate").Attribute("id")
+			}
+			return true; // continue
+		}
+	};
+
+	vector<PlaylistItem> Playlist::get_Items() {
+		vector<PlaylistItem> list;
+		PlaylistWalker walker(list);
+		this->document.traverse(walker);
+		return list;
+
+		return from item in document.Descendants(Playlist::playlistNS + "item")
+			;
 	}
 
 	string Playlist::get_Title() {

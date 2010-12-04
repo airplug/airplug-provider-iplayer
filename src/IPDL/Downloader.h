@@ -1,9 +1,12 @@
-
+#ifndef DOWNLOADER_H
+#define DOWNLOADER_H
 
 using System;
 using System.Net;
 using System.IO;
 using System.Text.RegularExpressions;
+
+using namespace std;
 
 namespace IPDL {
 
@@ -20,17 +23,13 @@ namespace IPDL {
 
     // Constructors
     Downloader();
-      
-    // Delegates ...
-    void AtStartHandler(string filename);
-    void ProgressHandler(int bytesFetched, int bytesTotal);
-    void AtEndHandler(DownloadStatus status, string message);
 
     // THE BIG ONE
     void Download(string pid,
-		  AtStartHandler atStart,
-		  ProgressHandler progress,
-		  AtEndHandler atEnd);
+									void (atStart*)(string filename),
+									void (progress*)(int bytesFetched, int bytesTotal),
+									void (atEnd*)(DownloadStatus status, string message)
+									);
 
 
   private: // Private methods
@@ -47,3 +46,5 @@ namespace IPDL {
   };
 
 }
+
+#endif // DOWNLOADER_H

@@ -9,6 +9,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
+#include "pugixml.hpp"
+
+using namespace pugi;
 
 namespace IPDL {
 
@@ -27,7 +30,7 @@ namespace IPDL {
 		 */
 
 	private:
-    XElement document;
+		xml_document document;
 		// The parsed XML tree
 
     static XNamespace playlistNS = "http://bbc.co.uk/2008/emp/playlist";
@@ -35,12 +38,9 @@ namespace IPDL {
     static string urlPrefix = "http://www.bbc.co.uk/iplayer/playlist/";
 		// The common prefix to all URLs to content
 
-    void Init(string source);
-
 	public:
 
-    Playlist(string source); // You can use a string
-    Playlist(Stream source); // or a stream as the XML source
+    Playlist(string source); // You can use a string as the XML source
 
     static string Url(string pid);
 		// Just urlPrefix + pid
