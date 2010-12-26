@@ -1,0 +1,75 @@
+.TH "IPDL::CoreMediaRequest" 3 "26 Dec 2010" "Version 0.0.1" "airplug-provider-iplayer" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+IPDL::CoreMediaRequest \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Request.h>\fP
+.PP
+Inherits \fBIPDL::AbstractRequest\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCoreMediaRequest\fP (string \fBurl\fP, CookieContainer \fBcookieContainer\fP)"
+.br
+.ti -1c
+.RI "int \fBget_ContentLength\fP ()"
+.br
+.ti -1c
+.RI "void \fBGetResponseStreamFromOffset\fP (int offset, ResponseStreamHandler streamHandler)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBMakeInitialRangeRequestIfNecessary\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBcontentLength\fP = -1"
+.br
+.in -1c
+.SS "Static Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "static int \fBMaxSegmentSize\fP = 0x400000"
+.br
+.ti -1c
+.RI "static string \fBUserAgent\fP = 'Apple iPhone v1.1.4 CoreMedia v1.0.0.4A102'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 51 of file Request.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "IPDL::CoreMediaRequest::CoreMediaRequest (string url, CookieContainer cookieContainer)"
+.SH "Member Function Documentation"
+.PP 
+.SS "int IPDL::CoreMediaRequest::get_ContentLength ()"
+.SS "void IPDL::CoreMediaRequest::GetResponseStreamFromOffset (int offset, ResponseStreamHandler streamHandler)"
+.SS "void IPDL::CoreMediaRequest::MakeInitialRangeRequestIfNecessary ()\fC [private]\fP"
+.SH "Member Data Documentation"
+.PP 
+.SS "int \fBIPDL::CoreMediaRequest::contentLength\fP = -1\fC [private]\fP"
+.PP
+Definition at line 58 of file Request.h.
+.SS "int \fBIPDL::CoreMediaRequest::MaxSegmentSize\fP = 0x400000\fC [static, private]\fP"
+.PP
+Definition at line 56 of file Request.h.
+.SS "string \fBIPDL::CoreMediaRequest::UserAgent\fP = 'Apple iPhone v1.1.4 CoreMedia v1.0.0.4A102'\fC [static, private]\fP"
+.PP
+Definition at line 55 of file Request.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for airplug-provider-iplayer from the source code.

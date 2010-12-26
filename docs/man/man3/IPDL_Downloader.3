@@ -1,0 +1,94 @@
+.TH "IPDL::Downloader" 3 "26 Dec 2010" "Version 0.0.1" "airplug-provider-iplayer" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+IPDL::Downloader \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Downloader.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDownloader\fP ()"
+.br
+.ti -1c
+.RI "void \fBDownload\fP (string pid, void(atStart *)(string filename), void(progress *)(int bytesFetched, int bytesTotal), void(atEnd *)(\fBDownloadStatus\fP status, string message))"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "string \fBFilenameSafe\fP (string text)"
+.br
+.ti -1c
+.RI "\fBIphonePage\fP \fBGetIphonePage\fP (string pid)"
+.br
+.ti -1c
+.RI "\fBPlaylist\fP \fBGetPlaylist\fP (string pid)"
+.br
+.ti -1c
+.RI "string \fBGetTitle\fP (string pid)"
+.br
+.ti -1c
+.RI "void \fBReadFromStream\fP (Stream stream, Action< byte[], int > handler)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "CookieContainer \fBcookies\fP"
+.br
+.in -1c
+.SS "Static Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "static int \fBBufferSize\fP = 0x10000"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A downloader of a single file, which sends notifications of progress via callbacks. 
+.PP
+Definition at line 19 of file Downloader.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "IPDL::Downloader::Downloader ()"A constructor. Create a downloader with no arguments: call \fBDownload()\fP to use it on a single file. 
+.SH "Member Function Documentation"
+.PP 
+.SS "void IPDL::Downloader::Download (string pid, void(atStart *)(string filename), void(progress *)(int bytesFetched, int bytesTotal), void(atEnd *)(\fBDownloadStatus\fP status, string message))"Download a specified BBC program to a file.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpid\fP the unique identifier of the program to download 
+.br
+\fIatStart\fP callback to be notified that the download has started 
+.br
+\fIprogress\fP callback to be notified of a change in how much has downloaded 
+.br
+\fIatEnd\fP callback to be notified that the download has finished 
+.RE
+.PP
+
+.SS "string IPDL::Downloader::FilenameSafe (string text)\fC [private]\fP"
+.SS "\fBIphonePage\fP IPDL::Downloader::GetIphonePage (string pid)\fC [private]\fP"
+.SS "\fBPlaylist\fP IPDL::Downloader::GetPlaylist (string pid)\fC [private]\fP"
+.SS "string IPDL::Downloader::GetTitle (string pid)\fC [private]\fP"
+.SS "void IPDL::Downloader::ReadFromStream (Stream stream, Action< byte[], int > handler)\fC [private]\fP"
+.SH "Member Data Documentation"
+.PP 
+.SS "int \fBIPDL::Downloader::BufferSize\fP = 0x10000\fC [static, private]\fP"
+.PP
+Definition at line 29 of file Downloader.h.
+.SS "CookieContainer \fBIPDL::Downloader::cookies\fP\fC [private]\fP"A container for cookies. Contains many cookies. 
+.PP
+Definition at line 27 of file Downloader.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for airplug-provider-iplayer from the source code.

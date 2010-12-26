@@ -1,0 +1,73 @@
+.TH "IPDL::Playlist" 3 "26 Dec 2010" "Version 0.0.1" "airplug-provider-iplayer" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+IPDL::Playlist \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Playlist.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBPlaylist\fP (string source)"
+.br
+.ti -1c
+.RI "IEnumerable< \fBPlaylistItem\fP > \fBget_Items\fP ()"
+.br
+.ti -1c
+.RI "string \fBget_Title\fP ()"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static string \fBUrl\fP (string pid)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "xml_document \fBdocument\fP"
+.br
+.in -1c
+.SS "Static Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "static XNamespace \fBplaylistNS\fP = 'http://bbc.co.uk/2008/emp/playlist'"
+.br
+.ti -1c
+.RI "static string \fBurlPrefix\fP = 'http://www.bbc.co.uk/iplayer/playlist/'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 26 of file Playlist.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "IPDL::Playlist::Playlist (string source)"
+.SH "Member Function Documentation"
+.PP 
+.SS "IEnumerable<\fBPlaylistItem\fP> IPDL::Playlist::get_Items ()"
+.SS "string IPDL::Playlist::get_Title ()"
+.SS "static string IPDL::Playlist::Url (string pid)\fC [static]\fP"
+.SH "Member Data Documentation"
+.PP 
+.SS "xml_document \fBIPDL::Playlist::document\fP\fC [private]\fP"
+.PP
+Definition at line 33 of file Playlist.h.
+.SS "XNamespace \fBIPDL::Playlist::playlistNS\fP = 'http://bbc.co.uk/2008/emp/playlist'\fC [static, private]\fP"
+.PP
+Definition at line 36 of file Playlist.h.
+.SS "string \fBIPDL::Playlist::urlPrefix\fP = 'http://www.bbc.co.uk/iplayer/playlist/'\fC [static, private]\fP"
+.PP
+Definition at line 38 of file Playlist.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for airplug-provider-iplayer from the source code.

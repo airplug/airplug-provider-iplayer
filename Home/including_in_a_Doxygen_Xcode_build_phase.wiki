@@ -1,0 +1,30 @@
+== Doxygen Style+ ==
+
+=== Including in a doxygen to custom build phase in Xcode ===
+
+Apple's has [[http://developer.apple.com/tools/creatingdocsetswithdoxygen.html|documentation]] on how to create and run a script, as a custom build phase, which automagically uses Doxygen to create XCode Documentation Sets. 
+
+The script created using the documentation can be modifed to use the Doxygen Style+ theme.
+
+==== Instructions ====
+
+{{http://developer.apple.com/tools/images/userSetting.gif|}}
+
+Where you added the User-Defined Settings for DOXYGEN_PATH also add this other setting DOXY_STYLE_PLUS_PATH and set it to the location of your Doxygen Style+ theme folder.
+
+Add the following lines to your script (between "//....doxygen.config//" and "//#  make will invoke....//" as shown below).
+
+{{{
+$DOXYGEN_PATH $TEMP_DIR/doxygen.config
+
+# Doxygen Style+
+# Add the theme  
+cp "$DOXY_STYLE_PLUS_PATH/doxygen.css" "$SOURCE_ROOT/docs/html/doxygen.css"
+cp "$DOXY_STYLE_PLUS_PATH/background_navigation.png" "$SOURCE_ROOT/docs/html/background_navigation.png"
+cp "$DOXY_STYLE_PLUS_PATH/img_downArrow.png" "$SOURCE_ROOT/docs/html/img_downArrow.png"
+cp "$DOXY_STYLE_PLUS_PATH/tabs.css" "$SOURCE_ROOT/docs/html/tabs.css"
+
+#  make will invoke docsetutil. Take a look at the Makefile to see how this is done.
+
+make -C $SOURCE_ROOT/DoxygenDocs.docset/html instal
+}}}

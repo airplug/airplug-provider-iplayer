@@ -1,0 +1,71 @@
+.TH "IPDL::AbstractRequest" 3 "26 Dec 2010" "Version 0.0.1" "airplug-provider-iplayer" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+IPDL::AbstractRequest \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Request.h>\fP
+.PP
+Inherited by \fBIPDL::CoreMediaRequest\fP, \fBIPDL::GeneralRequest\fP, and \fBIPDL::IphoneRequest\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAbstractRequest\fP (string \fBurl\fP, CookieContainer \fBcookieContainer\fP, string \fBuserAgent\fP)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "HttpWebRequest \fBRequest\fP ()"
+.br
+.ti -1c
+.RI "void \fBWithResponse\fP (HttpWebRequest request, void(ResponseHandler *)(WebResponse response) handler)"
+.br
+.ti -1c
+.RI "void \fBWithResponseStream\fP (HttpWebRequest request, void(ResponseStreamHandler *)(Stream stream) handler)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "CookieContainer \fBcookieContainer\fP"
+.br
+.ti -1c
+.RI "string \fBurl\fP"
+.br
+.ti -1c
+.RI "string \fBuserAgent\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 11 of file Request.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "IPDL::AbstractRequest::AbstractRequest (string url, CookieContainer cookieContainer, string userAgent)"
+.SH "Member Function Documentation"
+.PP 
+.SS "HttpWebRequest IPDL::AbstractRequest::Request ()\fC [protected]\fP"
+.SS "void IPDL::AbstractRequest::WithResponse (HttpWebRequest request, void(ResponseHandler *)(WebResponse response) handler)\fC [protected]\fP"
+.SS "void IPDL::AbstractRequest::WithResponseStream (HttpWebRequest request, void(ResponseStreamHandler *)(Stream stream) handler)\fC [protected]\fP"
+.SH "Member Data Documentation"
+.PP 
+.SS "CookieContainer \fBIPDL::AbstractRequest::cookieContainer\fP\fC [private]\fP"
+.PP
+Definition at line 17 of file Request.h.
+.SS "string \fBIPDL::AbstractRequest::url\fP\fC [private]\fP"
+.PP
+Definition at line 16 of file Request.h.
+.SS "string \fBIPDL::AbstractRequest::userAgent\fP\fC [private]\fP"
+.PP
+Definition at line 15 of file Request.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for airplug-provider-iplayer from the source code.
