@@ -1,25 +1,36 @@
-#ifndef UTIL_H
-#define UTIL_H
+// Copyright 2010 the airplug team
+
+#ifndef SRC_UTIL_UTIL_H_
+#define SRC_UTIL_UTIL_H_
 
 #include <string>
-
-using namespace std;
 
 namespace IPDL {
   namespace Util {
 
-    string SISuffixes[] = { "", "K", "M", "G", "T", "P", "E", "Z", "Y" };
+    std::string SISuffixes[] = { "", "K", "M", "G", "T", "P", "E", "Z", "Y" };
 
-		string SIFormat(int number, string units);
-		/* Format `number` in SI format, appending `units`.
-			 e.g. SIFormat(10, "bytes") = "10 bytes"
+		/**
+     * Format an integer to an SI-format string representation,
+     * appending a string that specifies the units.
+     * Example: SIFormat(10, "bytes") = "10 bytes"
+     *
+     * @param number  the integer to format
+     * @param units   a string, specifying the unit, to append
+     * @return        the SI representation
 		 */
+    std::string SIFormat(int number, std::string units);
 
-    string ExtractPid(string url);
-		/* Given a URL, extract a URL from it if possible, or NULL if not
+
+		/**
+     * Given a URL, extract a PID from it.
+     * If no PID can be found, return NULL.
+     *
+     * @param url  The URL to extract a PID from
+     * @return     A pointer to the PID as a string, or NULL if none found
 		 */
-
+    std::string *ExtractPid(std::string url);
   }
 }
 
-#endif // UTIL_H
+#endif  // SRC_UTIL_UTIL_H_
