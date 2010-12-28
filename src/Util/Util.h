@@ -8,12 +8,11 @@
 namespace IPDL {
   namespace Util {
 
-    std::string SISuffixes[] = { "", "K", "M", "G", "T", "P", "E", "Z", "Y" };
-
 		/**
      * Format an integer to an SI-format string representation,
      * appending a string that specifies the units.
-     * Example: SIFormat(10, "bytes") = "10 bytes"
+     * Format: "{0:0.00} {1}{2}".
+     * Example: SIFormat(10, "bytes") = "10 bytes".
      *
      * @param number  the integer to format
      * @param units   a string, specifying the unit, to append
