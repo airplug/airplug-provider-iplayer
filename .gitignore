@@ -61,5 +61,5 @@ Thumbs.db
 *~
 \#*\#
 
-
-docs/
+docs/*
+build/*
